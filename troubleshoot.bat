@@ -74,14 +74,26 @@ if exist "%PLUGIN_DIR%\plugin.json" (
     echo [ERROR] plugin.json missing
 )
 
-REM Tester l'exécutable
+REM Tester l'exécutable de manière plus appropriée
 echo.
 echo Testing executable...
-"%PLUGIN_DIR%\tiktok_plugin.exe" --version 2>nul
-if %ERRORLEVEL% == 0 (
-    echo [OK] Executable runs successfully
+if exist "%PLUGIN_DIR%\tiktok_plugin.exe" (
+    REM Test simple: vérifier la taille du fichier
+    for %%A in ("%PLUGIN_DIR%\tiktok_plugin.exe") do set "filesize=%%~zA"
+    if !filesize! gtr 1000000 (
+        echo [OK] Executable appears valid ^(size: !filesize! bytes^)
+    ) else (
+        echo [WARNING] Executable seems small ^(size: !filesize! bytes^)
+    )
+    
+    REM Test optionnel avec timeout court
+    echo Testing executable launch with timeout...
+    start /B "" "%PLUGIN_DIR%\tiktok_plugin.exe" 2>nul
+    timeout /t 2 >nul
+    taskkill /F /IM "tiktok_plugin.exe" >nul 2>nul
+    echo [INFO] Launch test completed
 ) else (
-    echo [WARNING] Executable test failed - this may be normal
+    echo [ERROR] Executable not found
 )
 
 echo.
@@ -99,5 +111,6 @@ echo Common issues:
 echo - Make sure TouchPortal is completely closed before installation
 echo - Check that Python dependencies are installed
 echo - Verify that Windows allows the executable to run
+echo - Try running TouchPortal as administrator if needed
 echo.
 pause

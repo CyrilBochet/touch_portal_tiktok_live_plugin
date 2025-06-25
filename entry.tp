@@ -12,7 +12,6 @@
     {
       "id": "tiktok.live.category",
       "name": "TikTok Live",
-      "imagepath": "%TP_PLUGIN_FOLDER%TikTokLivePlugin\\tiktok.png",
       "actions": [
         {
           "id": "tiktok.live.start",
@@ -20,7 +19,6 @@
           "prefix": "TikTok Live",
           "type": "communicate",
           "description": "Start monitoring a TikTok live stream",
-          "tryInline": true,
           "format": "Start monitoring @{$tiktok.live.username$}",
           "data": [
             {
@@ -37,7 +35,6 @@
           "prefix": "TikTok Live",
           "type": "communicate",
           "description": "Stop monitoring the current TikTok live stream",
-          "tryInline": true,
           "format": "Stop monitoring"
         }
       ],
@@ -49,45 +46,15 @@
           "default": "Stopped"
         },
         {
-          "id": "tiktok.live.current_username",
-          "type": "text",
-          "desc": "Current Username",
-          "default": ""
-        },
-        {
           "id": "tiktok.live.viewers",
-          "type": "text",
+          "type": "text", 
           "desc": "Current Viewers",
-          "default": "0"
-        },
-        {
-          "id": "tiktok.live.total_likes",
-          "type": "text",
-          "desc": "Total Likes",
-          "default": "0"
-        },
-        {
-          "id": "tiktok.live.followers",
-          "type": "text",
-          "desc": "Current Followers",
           "default": "0"
         },
         {
           "id": "tiktok.live.last_comment",
           "type": "text",
-          "desc": "Last Comment",
-          "default": ""
-        },
-        {
-          "id": "tiktok.live.last_commenter",
-          "type": "text",
-          "desc": "Last Commenter",
-          "default": ""
-        },
-        {
-          "id": "tiktok.live.room_id",
-          "type": "text",
-          "desc": "Room ID",
+          "desc": "Last Comment", 
           "default": ""
         }
       ],
@@ -96,56 +63,13 @@
           "id": "tiktok.live.connected",
           "name": "TikTok Live Connected",
           "format": "When TikTok live stream connects",
-          "type": "communicate",
-          "valueType": "choice",
-          "valueChoices": [
-            "Connected"
-          ],
-          "valueStateId": "tiktok.live.status"
+          "type": "communicate"
         },
         {
-          "id": "tiktok.live.new_comment",
+          "id": "tiktok.live.new_comment", 
           "name": "New Comment Received",
           "format": "When new comment is received",
-          "type": "communicate",
-          "valueType": "choice",
-          "valueChoices": [
-            "New Comment"
-          ],
-          "valueStateId": "tiktok.live.last_comment"
-        },
-        {
-          "id": "tiktok.live.new_follower",
-          "name": "New Follower",
-          "format": "When someone follows the stream",
-          "type": "communicate",
-          "valueType": "choice",
-          "valueChoices": [
-            "New Follower"
-          ],
-          "valueStateId": "tiktok.live.followers"
-        },
-        {
-          "id": "tiktok.live.gift_received",
-          "name": "Gift Received",
-          "format": "When a gift is received",
-          "type": "communicate",
-          "valueType": "choice",
-          "valueChoices": [
-            "Gift Received"
-          ],
-          "valueStateId": "tiktok.live.last_commenter"
-        },
-        {
-          "id": "tiktok.live.stream_ended",
-          "name": "Stream Ended",
-          "format": "When the live stream ends",
-          "type": "communicate",
-          "valueType": "choice",
-          "valueChoices": [
-            "Stream Ended"
-          ],
-          "valueStateId": "tiktok.live.status"
+          "type": "communicate"
         }
       ]
     }

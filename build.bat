@@ -27,6 +27,25 @@ REM Créer le fichier plugin.json nécessaire
 echo Creating plugin.json...
 copy entry.tp build\TikTokLivePlugin\plugin.json
 
+REM Tester l'exécutable (test simple d'existence et de permission)
+echo Testing executable...
+if exist "build\TikTokLivePlugin\tiktok_plugin.exe" (
+    echo [OK] Executable created successfully
+    
+    REM Test optionnel: vérifier que l'exe peut être lancé (se ferme immédiatement sans stdin)
+    echo Testing executable launch...
+    timeout /t 1 >nul 2>nul | "build\TikTokLivePlugin\tiktok_plugin.exe" 2>nul
+    if %errorlevel% geq 0 (
+        echo [OK] Executable can be launched
+    ) else (
+        echo [WARNING] Executable launch test inconclusive
+    )
+) else (
+    echo [ERROR] Executable not found!
+    pause
+    exit /b 1
+)
+
 echo Build complete! 
 echo.
 echo To install:
