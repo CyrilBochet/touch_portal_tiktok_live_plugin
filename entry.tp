@@ -46,9 +46,27 @@
           "default": "Stopped"
         },
         {
+          "id": "tiktok.live.current_username",
+          "type": "text",
+          "desc": "Current Username",
+          "default": ""
+        },
+        {
           "id": "tiktok.live.viewers",
           "type": "text", 
           "desc": "Current Viewers",
+          "default": "0"
+        },
+        {
+          "id": "tiktok.live.total_likes",
+          "type": "text",
+          "desc": "Total Likes",
+          "default": "0"
+        },
+        {
+          "id": "tiktok.live.followers",
+          "type": "text",
+          "desc": "Current Followers",
           "default": "0"
         },
         {
@@ -56,20 +74,55 @@
           "type": "text",
           "desc": "Last Comment", 
           "default": ""
+        },
+        {
+          "id": "tiktok.live.last_commenter",
+          "type": "text",
+          "desc": "Last Commenter",
+          "default": ""
+        },
+        {
+          "id": "tiktok.live.room_id",
+          "type": "text",
+          "desc": "Room ID",
+          "default": ""
         }
       ],
       "events": [
         {
           "id": "tiktok.live.connected",
           "name": "TikTok Live Connected",
-          "format": "When TikTok live stream connects",
-          "type": "communicate"
+          "format": "When TikTok live stream connects for {$tiktok.live.current_username$}",
+          "type": "communicate",
+          "valueStateId": "tiktok.live.current_username"
         },
         {
           "id": "tiktok.live.new_comment", 
           "name": "New Comment Received",
-          "format": "When new comment is received",
-          "type": "communicate"
+          "format": "When new comment is received: {$tiktok.live.last_comment$}",
+          "type": "communicate",
+          "valueStateId": "tiktok.live.last_comment"
+        },
+        {
+          "id": "tiktok.live.new_follower",
+          "name": "New Follower",
+          "format": "When someone follows the stream",
+          "type": "communicate",
+          "valueStateId": "tiktok.live.followers"
+        },
+        {
+          "id": "tiktok.live.gift_received",
+          "name": "Gift Received",
+          "format": "When a gift is received from {$tiktok.live.last_commenter$}",
+          "type": "communicate",
+          "valueStateId": "tiktok.live.last_commenter"
+        },
+        {
+          "id": "tiktok.live.stream_ended",
+          "name": "Stream Ended",
+          "format": "When the live stream ends",
+          "type": "communicate",
+          "valueStateId": "tiktok.live.status"
         }
       ]
     }
